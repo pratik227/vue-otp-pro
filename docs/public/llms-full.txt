@@ -1,0 +1,223 @@
+# Vue OTP Pro — Complete LLM Reference
+
+> Use this document to generate correct Vue OTP Pro code. All props, events, methods, types, and usage patterns are listed below.
+
+## Installation
+
+```bash
+npm install vue-otp-pro
+```
+
+## Import
+
+```vue
+<script setup lang="ts">
+import { OtpInput } from 'vue-otp-pro'
+import 'vue-otp-pro/dist/vue-otp-pro.css'
+</script>
+```
+
+Or register globally:
+
+```ts
+import { VueOtpPro } from 'vue-otp-pro'
+app.use(VueOtpPro)
+```
+
+## Component: <OtpInput>
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| modelValue | string | '' | v-model binding for the OTP string |
+| numInputs | number | 6 | Number of input fields to render |
+| inputType | 'number' | 'tel' | 'letter-numeric' | 'password' | 'tel' | Controls character validation |
+| inputmode | 'none' | 'text' | 'tel' | 'numeric' | 'decimal' | 'search' | 'numeric' | HTML inputmode for virtual keyboard |
+| theme | 'box' | 'underline' | 'rounded' | 'pill' | 'separated' | 'flush' | 'shadow' | 'neon' | 'glass' | 'minimal' | 'filled' | 'box' | Visual theme |
+| variant | 'default' | 'primary' | 'success' | 'danger' | 'warning' | 'default' | Color variant |
+| size | 'sm' | 'md' | 'lg' | 'xl' | 'md' | Input size |
+| placeholder | string | string[] | '' | Placeholder text. String applies to all, array is per-input |
+| separator | string | '' | HTML content rendered between inputs |
+| shouldAutoFocus | boolean | false | Auto-focus first input on mount |
+| shouldFocusOrder | boolean | false | Enforce sequential input order (cannot skip empty fields) |
+| disabled | boolean | false | Disable all inputs |
+| readonly | boolean | false | Read-only mode (visible, focusable, not editable) |
+| error | boolean | false | Error state — triggers CSS shake animation |
+| success | boolean | false | Success state — triggers CSS pulse animation |
+| inputClasses | string | string[] | '' | CSS classes applied to every input element |
+| conditionalClass | string[] | ((index: number, value: string) => string) | undefined | Per-input CSS classes. Array maps index to class. Function receives (index, currentValue) and returns a class string |
+| containerClass | string | '' | CSS class for the outer container div |
+| ariaLabel | string | 'OTP Input' | Accessible label prefix. Each input gets "{ariaLabel} digit {n}" |
+
+### Events
+
+| Event | Payload | When |
+|-------|---------|------|
+| update:modelValue | string | Every character change (v-model) |
+| change | string | Every character change |
+| complete | string | All inputs are filled |
+
+### Exposed Methods (via template ref)
+
+```ts
+const otpRef = ref<InstanceType<typeof OtpInput>>()
+```
+
+| Method | Signature | Description |
+|--------|-----------|-------------|
+| clear() | () => void | Clears all inputs, emits empty value, focuses first input |
+| fill(value) | (value: string) => void | Fills inputs with given string. Filters invalid chars. Pads remaining with empty |
+| focus() | () => void | Focuses the first input |
+| focusInput(index) | (index: number) => void | Focuses a specific input by 0-based index |
+
+### Slots
+
+| Slot | Description |
+|------|-------------|
+| separator | Custom separator content. Only rendered when `separator` prop is set and between adjacent inputs. Overrides the default `<span v-html="separator">` |
+
+## Composable: useOtp()
+
+For building custom OTP UIs:
+
+```ts
+import { useOtp } from 'vue-otp-pro'
+
+const {
+  otp,           // Ref<string[]> — array of individual values
+  activeInput,   // Ref<number> — currently focused index
+  otpValue,      // ComputedRef<string> — joined string
+  isComplete,    // ComputedRef<boolean> — all fields filled
+  isValidChar,   // (char: string) => boolean
+  setInputValue, // (index: number, value: string) => void
+  clearAll,      // () => void
+  fillAll,       // (value: string) => boolean
+  syncLength,    // (newLength: number) => void
+} = useOtp(
+  () => 6,       // numInputs getter
+  () => 'tel'    // inputType getter
+)
+```
+
+## TypeScript Types
+
+```ts
+import type {
+  OtpInputProps,   // All component props
+  OtpInputExpose,  // Exposed methods interface
+  OtpInputType,    // 'number' | 'tel' | 'letter-numeric' | 'password'
+  OtpTheme,        // 'box' | 'underline' | ... | 'filled'
+  OtpVariant,      // 'default' | 'primary' | 'success' | 'danger' | 'warning'
+  OtpSize,         // 'sm' | 'md' | 'lg' | 'xl'
+} from 'vue-otp-pro'
+```
+
+## CSS Custom Properties
+
+Override on `.vop` to customize:
+
+```css
+.vop {
+  --vop-font-family: 'SF Mono', monospace;
+  --vop-gap: 10px;
+  --vop-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --vop-border-color: #d1d5db;
+  --vop-border-focus: #6366f1;
+  --vop-bg: #ffffff;
+  --vop-bg-focus: #ffffff;
+  --vop-text: #1f2937;
+  --vop-placeholder: #9ca3af;
+  --vop-caret-color: #6366f1;
+  --vop-shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+```
+
+Dark mode:
+
+```css
+.dark .vop {
+  --vop-border-color: #374151;
+  --vop-border-focus: #818cf8;
+  --vop-bg: #1f2937;
+  --vop-text: #f9fafb;
+  --vop-placeholder: #6b7280;
+}
+```
+
+## CSS Classes Applied by Component
+
+| Class | Applied to | When |
+|-------|-----------|------|
+| .vop | Container | Always |
+| .vop--{theme} | Container | Based on theme prop |
+| .vop--{size} | Container | Based on size prop |
+| .vop--{variant} | Container | Based on variant prop |
+| .is-error | Container | error=true |
+| .is-success | Container | success=true |
+| .is-disabled | Container | disabled=true |
+| .vop__input | Each input | Always |
+| .is-filled | Each input | When input has a value |
+| .is-readonly | Each input | When readonly=true |
+| .just-filled | Each input | Briefly after a digit is entered (200ms pop animation) |
+| .vop__separator | Separator span | When separator prop is set |
+
+## Common Patterns
+
+### Basic 6-digit OTP
+```vue
+<OtpInput v-model="otp" @complete="verify" />
+```
+
+### 4-digit PIN with password masking
+```vue
+<OtpInput v-model="pin" :num-inputs="4" input-type="password" />
+```
+
+### Themed with variant
+```vue
+<OtpInput theme="separated" variant="primary" size="lg" />
+```
+
+### Error handling with shake
+```vue
+<OtpInput v-model="otp" :error="hasError" @complete="verify" />
+```
+
+### With separator
+```vue
+<OtpInput :num-inputs="4" separator="-" />
+```
+
+### Programmatic control
+```vue
+<script setup>
+const otpRef = ref()
+otpRef.value?.fill('123456')
+otpRef.value?.clear()
+otpRef.value?.focus()
+otpRef.value?.focusInput(2)
+</script>
+<template>
+  <OtpInput ref="otpRef" />
+</template>
+```
+
+### Per-input conditional styling
+```vue
+<OtpInput :conditional-class="(i, val) => val ? 'has-value' : 'empty'" />
+```
+
+### Verification form
+```vue
+<OtpInput
+  v-model="otp"
+  theme="separated"
+  size="lg"
+  :error="isError"
+  :success="isSuccess"
+  :disabled="isLoading"
+  should-auto-focus
+  @complete="handleVerify"
+/>
+```

@@ -1,0 +1,14 @@
+# Vue OTP Pro
+
+> Beautiful, customizable OTP input component for Vue 3
+
+Vue OTP Pro is a drop-in OTP (One-Time Password) input component for Vue 3 applications. It provides 11 built-in themes, 5 color variants, smooth animations, and full accessibility out of the box.
+
+## Documentation
+
+- [Getting Started](https://vue-otp-pro.dev/guide/getting-started): Installation and quick start
+- [Props & Events](https://vue-otp-pro.dev/guide/props): Complete API reference
+- [Theming](https://vue-otp-pro.dev/guide/theming): 11 themes, CSS custom properties, dark mode
+- [Accessibility](https://vue-otp-pro.dev/guide/accessibility): ARIA, keyboard navigation, mobile support
+- [Examples](https://vue-otp-pro.dev/examples/): Interactive playground and live demos
+- [LLM Full Reference](https://vue-otp-pro.dev/llms-full.txt): Complete API for AI agents

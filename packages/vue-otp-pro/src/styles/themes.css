@@ -1,0 +1,417 @@
+/* ============================================
+   Vue OTP Pro - Built-in Themes & Styles
+   ============================================ */
+
+.vop {
+  --vop-font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --vop-gap: 10px;
+  --vop-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Default colors */
+  --vop-border-color: #d1d5db;
+  --vop-border-focus: #6366f1;
+  --vop-bg: #ffffff;
+  --vop-bg-focus: #ffffff;
+  --vop-text: #1f2937;
+  --vop-placeholder: #9ca3af;
+  --vop-shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  --vop-caret-color: #6366f1;
+
+  /* Variant: primary */
+  --vop-primary-border: #818cf8;
+  --vop-primary-focus: #6366f1;
+  --vop-primary-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+
+  /* Variant: success */
+  --vop-success-border: #86efac;
+  --vop-success-focus: #22c55e;
+  --vop-success-bg: #f0fdf4;
+  --vop-success-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+
+  /* Variant: danger */
+  --vop-danger-border: #fca5a5;
+  --vop-danger-focus: #ef4444;
+  --vop-danger-bg: #fef2f2;
+  --vop-danger-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+
+  /* Variant: warning */
+  --vop-warning-border: #fde68a;
+  --vop-warning-focus: #f59e0b;
+  --vop-warning-bg: #fffbeb;
+  --vop-warning-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vop-gap);
+  font-family: var(--vop-font-family);
+}
+
+/* ---- Base input ---- */
+.vop__input {
+  font-family: inherit;
+  text-align: center;
+  color: var(--vop-text);
+  background: var(--vop-bg);
+  caret-color: var(--vop-caret-color);
+  outline: none;
+  transition: all var(--vop-transition);
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.vop__input::placeholder {
+  color: var(--vop-placeholder);
+}
+
+.vop__input::-webkit-outer-spin-button,
+.vop__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.vop__input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.vop__input:read-only {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* ---- Sizes ---- */
+.vop--sm .vop__input { width: 36px; height: 36px; font-size: 16px; }
+.vop--md .vop__input { width: 48px; height: 48px; font-size: 22px; }
+.vop--lg .vop__input { width: 60px; height: 60px; font-size: 28px; }
+.vop--xl .vop__input { width: 72px; height: 72px; font-size: 34px; }
+
+.vop--sm { --vop-gap: 8px; }
+.vop--md { --vop-gap: 10px; }
+.vop--lg { --vop-gap: 12px; }
+.vop--xl { --vop-gap: 14px; }
+
+/* =======================
+   Theme: Box (default)
+   ======================= */
+.vop--box .vop__input {
+  border: 2px solid var(--vop-border-color);
+  border-radius: 10px;
+}
+
+.vop--box .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: var(--vop-shadow-focus);
+  background: var(--vop-bg-focus);
+}
+
+.vop--box .vop__input.is-filled {
+  border-color: color-mix(in srgb, var(--vop-border-focus) 50%, var(--vop-border-color));
+  background: color-mix(in srgb, var(--vop-border-focus) 4%, var(--vop-bg));
+}
+
+/* =======================
+   Theme: Underline
+   ======================= */
+.vop--underline .vop__input {
+  border: none;
+  border-bottom: 3px solid var(--vop-border-color);
+  border-radius: 0;
+  background: transparent;
+}
+
+.vop--underline .vop__input:focus {
+  border-bottom-color: var(--vop-border-focus);
+  box-shadow: 0 2px 0 0 var(--vop-border-focus);
+}
+
+.vop--underline .vop__input.is-filled {
+  border-bottom-color: color-mix(in srgb, var(--vop-border-focus) 60%, var(--vop-border-color));
+}
+
+/* =======================
+   Theme: Rounded
+   ======================= */
+.vop--rounded .vop__input {
+  border: 2px solid var(--vop-border-color);
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
+.vop--rounded .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: var(--vop-shadow-focus);
+  transform: scale(1.05);
+}
+
+.vop--rounded .vop__input.is-filled {
+  border-color: var(--vop-border-focus);
+  background: color-mix(in srgb, var(--vop-border-focus) 6%, var(--vop-bg));
+}
+
+/* =======================
+   Theme: Pill
+   ======================= */
+.vop--pill .vop__input {
+  border: 2px solid var(--vop-border-color);
+  border-radius: 999px;
+}
+
+.vop--pill .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: var(--vop-shadow-focus);
+}
+
+.vop--pill .vop__input.is-filled {
+  border-color: var(--vop-border-focus);
+  background: color-mix(in srgb, var(--vop-border-focus) 6%, var(--vop-bg));
+}
+
+/* =======================
+   Theme: Separated
+   ======================= */
+.vop--separated {
+  --vop-gap: 16px;
+}
+
+.vop--separated .vop__input {
+  border: 2px solid var(--vop-border-color);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.vop--separated .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: var(--vop-shadow-focus), 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.vop--separated .vop__input.is-filled {
+  border-color: var(--vop-border-focus);
+  background: color-mix(in srgb, var(--vop-border-focus) 4%, var(--vop-bg));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* =======================
+   Theme: Flush (joined)
+   ======================= */
+.vop--flush {
+  --vop-gap: 0px;
+}
+
+.vop--flush .vop__input {
+  border: 2px solid var(--vop-border-color);
+  border-radius: 0;
+  border-right-width: 1px;
+  border-left-width: 1px;
+}
+
+.vop--flush .vop__input:first-of-type {
+  border-left-width: 2px;
+  border-radius: 10px 0 0 10px;
+}
+
+.vop--flush .vop__input:last-of-type {
+  border-right-width: 2px;
+  border-radius: 0 10px 10px 0;
+}
+
+.vop--flush .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: var(--vop-shadow-focus);
+  z-index: 1;
+  position: relative;
+}
+
+.vop--flush .vop__input.is-filled {
+  background: color-mix(in srgb, var(--vop-border-focus) 4%, var(--vop-bg));
+}
+
+/* =======================
+   Theme: Shadow
+   ======================= */
+.vop--shadow .vop__input {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--vop-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.vop--shadow .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), var(--vop-shadow-focus);
+  transform: translateY(-1px);
+}
+
+.vop--shadow .vop__input.is-filled {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-color: color-mix(in srgb, var(--vop-border-focus) 30%, transparent);
+}
+
+/* =======================
+   Theme: Neon
+   ======================= */
+.vop--neon .vop__input {
+  border: 2px solid var(--vop-border-color);
+  border-radius: 10px;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+.vop--neon .vop__input::placeholder {
+  color: #475569;
+}
+
+.vop--neon .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--vop-border-focus) 60%, transparent),
+              0 0 20px color-mix(in srgb, var(--vop-border-focus) 30%, transparent),
+              inset 0 0 8px color-mix(in srgb, var(--vop-border-focus) 10%, transparent);
+}
+
+.vop--neon .vop__input.is-filled {
+  border-color: color-mix(in srgb, var(--vop-border-focus) 70%, transparent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--vop-border-focus) 30%, transparent);
+}
+
+/* =======================
+   Theme: Glass
+   ======================= */
+.vop--glass .vop__input {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--vop-text);
+}
+
+.vop--glass .vop__input:focus {
+  border-color: color-mix(in srgb, var(--vop-border-focus) 60%, rgba(255, 255, 255, 0.3));
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.vop--glass .vop__input.is-filled {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: color-mix(in srgb, var(--vop-border-focus) 40%, rgba(255, 255, 255, 0.25));
+}
+
+/* =======================
+   Theme: Minimal
+   ======================= */
+.vop--minimal .vop__input {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.vop--minimal .vop__input:focus {
+  border-color: var(--vop-border-focus);
+  box-shadow: none;
+}
+
+.vop--minimal .vop__input.is-filled {
+  border-color: #9ca3af;
+}
+
+/* =======================
+   Theme: Filled
+   ======================= */
+.vop--filled .vop__input {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: var(--vop-text);
+}
+
+.vop--filled .vop__input:focus {
+  background: #e2e8f0;
+  border-color: var(--vop-border-focus);
+  box-shadow: none;
+}
+
+.vop--filled .vop__input.is-filled {
+  background: #e2e8f0;
+  border-color: color-mix(in srgb, var(--vop-border-focus) 40%, transparent);
+}
+
+/* =======================
+   Variant overrides
+   ======================= */
+.vop--primary .vop__input {
+  --vop-border-focus: var(--vop-primary-focus);
+  --vop-shadow-focus: var(--vop-primary-shadow);
+  --vop-caret-color: var(--vop-primary-focus);
+}
+
+.vop--success .vop__input,
+.vop.is-success .vop__input {
+  --vop-border-color: var(--vop-success-border);
+  --vop-border-focus: var(--vop-success-focus);
+  --vop-bg: var(--vop-success-bg);
+  --vop-shadow-focus: var(--vop-success-shadow);
+  --vop-caret-color: var(--vop-success-focus);
+}
+
+.vop--danger .vop__input,
+.vop.is-error .vop__input {
+  --vop-border-color: var(--vop-danger-border);
+  --vop-border-focus: var(--vop-danger-focus);
+  --vop-bg: var(--vop-danger-bg);
+  --vop-shadow-focus: var(--vop-danger-shadow);
+  --vop-caret-color: var(--vop-danger-focus);
+}
+
+.vop--warning .vop__input {
+  --vop-border-color: var(--vop-warning-border);
+  --vop-border-focus: var(--vop-warning-focus);
+  --vop-bg: var(--vop-warning-bg);
+  --vop-shadow-focus: var(--vop-warning-shadow);
+  --vop-caret-color: var(--vop-warning-focus);
+}
+
+/* =======================
+   Animations
+   ======================= */
+@keyframes vop-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes vop-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+@keyframes vop-success-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.vop.is-error {
+  animation: vop-shake 0.4s ease-in-out;
+}
+
+.vop.is-success .vop__input {
+  animation: vop-success-pulse 0.6s ease-out;
+}
+
+.vop__input.just-filled {
+  animation: vop-pop 0.2s ease-out;
+}
+
+/* ---- Separator ---- */
+.vop__separator {
+  display: flex;
+  align-items: center;
+  color: var(--vop-placeholder);
+  font-size: 1.2em;
+  user-select: none;
+  flex-shrink: 0;
+}

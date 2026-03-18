@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="120" height="120" rx="28" fill="url(#bg)"/>
+  <!-- OTP input boxes -->
+  <rect x="14" y="42" width="26" height="36" rx="7" fill="white" fill-opacity="0.15" stroke="white" stroke-opacity="0.6" stroke-width="2.5"/>
+  <rect x="47" y="42" width="26" height="36" rx="7" fill="white" fill-opacity="0.15" stroke="white" stroke-opacity="0.6" stroke-width="2.5"/>
+  <rect x="80" y="42" width="26" height="36" rx="7" fill="white" fill-opacity="0.25" stroke="white" stroke-opacity="0.8" stroke-width="2.5"/>
+  <!-- Digits inside boxes -->
+  <text x="27" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" fill="white">4</text>
+  <text x="60" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" fill="white">2</text>
+  <!-- Blinking cursor in third box -->
+  <rect x="91" y="49" width="2.5" height="22" rx="1.25" fill="white">
+    <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <!-- Small dots separator -->
+  <circle cx="42" cy="60" r="2" fill="white" fill-opacity="0.4"/>
+  <circle cx="78" cy="60" r="2" fill="white" fill-opacity="0.4"/>
+</svg>

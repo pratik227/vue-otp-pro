@@ -1,0 +1,14 @@
+{
+  "name": "vue-otp-pro-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter playground dev",
+    "build": "pnpm --filter vue-otp-pro build",
+    "docs:dev": "pnpm --filter docs dev",
+    "docs:build": "pnpm --filter docs build",
+    "test": "pnpm --filter vue-otp-pro test:unit"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
