@@ -1,0 +1,11 @@
+[build]
+  publish = "docs/.vitepress/dist"
+  command = "npx pnpm install --frozen-lockfile && npx pnpm docs:build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
