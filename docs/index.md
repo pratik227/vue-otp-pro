@@ -16,7 +16,7 @@ hero:
       link: /examples/
     - theme: alt
       text: GitHub
-      link: https://github.com/pratik227
+      link: https://github.com/pratik227/vue-otp-pro
 ---
 
 <script setup>
